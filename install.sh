@@ -21,6 +21,10 @@ chmod +x /usr/local/bin/startup-commands.sh
 echo "Reloading systemd daemon..."
 systemctl daemon-reload
 
+# Remove the git folder
+echo "Cleaning up .git folder..."
+rm -rf .git
+
 echo "Installation complete!"
 echo "To enable the service at startup, run: systemctl enable startup-commands.service"
 echo "To start the service now, run: systemctl start startup-commands.service"
