@@ -21,9 +21,14 @@ chmod +x /usr/local/bin/startup-commands.sh
 echo "Reloading systemd daemon..."
 systemctl daemon-reload
 
-# Remove the git folder
-echo "Cleaning up .git folder..."
-rm -rf .git
+# Get the directory where the script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Remove the git folder and then the entire repo directory
+echo "Cleaning up installation files..."
+rm -rf "$SCRIPT_DIR/.git"
+cd /tmp
+rm -rf "$SCRIPT_DIR"
 
 echo "Installation complete!"
 echo "To enable the service at startup, run: systemctl enable startup-commands.service"
