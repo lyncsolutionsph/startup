@@ -1,0 +1,14 @@
+[Unit]
+Description=Run custom startup commands for Raspberry Pi
+After=network-online.target
+Wants=network-online.target
+
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/startup-commands.sh
+RemainAfterExit=true
+
+
+[Install]
+WantedBy=multi-user.target
